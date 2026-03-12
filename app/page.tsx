@@ -14,10 +14,13 @@ import SkeletonResult from "./components/SkeletonResult"
 import AIAnalyzing from "./components/AIAnalyzing"
 
 import Header from "./components/Header"
-import Features from "./components/Features"
 import FlowDiagram from "./components/FlowDiagram"
 import ResultsShowcase from "./components/ResultsShowcase"
 import Footer from "./components/Footer"
+
+import Mission from "./components/Mission"
+import Vision from "./components/Vision"
+import Objective from "./components/Objective"
 
 export default function Page() {
 
@@ -143,7 +146,13 @@ export default function Page() {
 
       {/* FEATURES */}
 
-      <Features />
+      {/* <Features /> */}
+
+      <Objective />
+
+      <Mission />
+
+      <Vision />
 
       {/* FOOTER */}
 

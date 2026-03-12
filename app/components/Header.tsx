@@ -42,8 +42,8 @@ export default function Header() {
                     <Image
                         src="/logo.png"
                         alt="NubeBoost"
-                        width={36}
-                        height={36}
+                        width={40}
+                        height={40}
                     />
 
                     <span className="font-bold text-lg">
@@ -63,11 +63,6 @@ export default function Header() {
                     <a href="#demo" className="hover:text-black">
                         Demo
                     </a>
-
-                    <a href="#features" className="hover:text-black">
-                        Funciones
-                    </a>
-
 
 
                 </nav>
