@@ -15,7 +15,7 @@ export default function History({ items }: Readonly<Props>) {
     <section className="bg-white p-6 rounded-xl shadow">
 
       <h2 className="text-xl font-semibold mb-6">
-        Recent Optimized Images
+        Imagenes optimizadas recientes
       </h2>
 
       <div className="grid grid-cols-6 gap-4">
@@ -28,7 +28,7 @@ export default function History({ items }: Readonly<Props>) {
           >
 
             <img
-              alt="Optimized preview"
+              alt="Vista previa optimizada"
               src={item.optimized}
               className="w-full h-24 object-cover"
             />

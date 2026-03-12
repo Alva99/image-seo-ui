@@ -13,11 +13,11 @@ export default function AIAnalyzing() {
       <div>
 
         <p className="font-medium text-indigo-700">
-          AI analyzing image
+          IA analizando imagen
         </p>
 
         <p className="text-sm text-indigo-500">
-          generating SEO metadata & optimizing compression
+          generando metadatos SEO y optimizando compresion
         </p>
 
       </div>

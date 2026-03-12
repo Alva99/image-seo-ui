@@ -36,11 +36,11 @@ export default function UploadBox({ onFile }: Readonly<Props>) {
       <UploadCloud className="mx-auto text-indigo-500 mb-4" size={40} />
 
       <h3 className="text-lg font-semibold">
-        Upload your image
+        Sube tu imagen
       </h3>
 
       <p className="text-gray-500 text-sm mt-1">
-        Drag & drop or click to browse
+        Arrastra y suelta o haz clic para elegir
       </p>
 
       <div className="flex justify-center gap-3 mt-6 text-xs text-gray-400">

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 
 import { SeoData } from "@/types/seo"
 
@@ -13,6 +12,12 @@ import ImagePreview from "./components/ImagePreview"
 import SeoResult from "./components/SeoResult"
 import SkeletonResult from "./components/SkeletonResult"
 import AIAnalyzing from "./components/AIAnalyzing"
+
+import Header from "./components/Header"
+import Features from "./components/Features"
+import FlowDiagram from "./components/FlowDiagram"
+import ResultsShowcase from "./components/ResultsShowcase"
+import Footer from "./components/Footer"
 
 export default function Page() {
 
@@ -54,74 +59,97 @@ export default function Page() {
     }
 
     setLoading(false)
+
   }
 
   return (
 
-    <main className="min-h-screen bg-gradient-to-b from-white to-gray-100 p-10">
+    <>
+      <Header />
 
-      {/* HEADER */}
+      {/* HERO + DEMO */}
 
-      <div className="flex items-center gap-4 mb-10">
+      <main className="bg-gradient-to-b from-white to-gray-100 pt-28">
+        <section className="max-w-6xl mx-auto px-6 py-20">
 
-        <Image
-          src="/logo_app.png"
-          alt="NubeBoost"
-          width={80}
-          height={80}
-        />
+          <div className="text-center mb-14">
 
-        <div>
+            <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm">
+              Impulsado por IA
+            </span>
 
-          <h1 className="text-3xl font-bold">
-            NubeBoost Image SEO
-          </h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
 
-          <p className="text-gray-500 text-sm">
-            AI powered image optimization
-          </p>
+              SEO de imagenes con IA
 
-        </div>
+            </h1>
 
-      </div>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
 
-      {/* UPLOAD */}
+              Genera titulos, descripciones y versiones optimizadas de tus
+              imagenes en segundos.
 
-      <UploadBox onFile={handleFile} />
+            </p>
 
-      {loading && <ProgressBar progress={progress} />}
+          </div>
 
-      {/* MAIN GRID */}
+          {/* Upload tool */}
 
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-10 mt-10">
+          <div id="upload">
+            <UploadBox onFile={handleFile} />
+          </div>
 
-        {/* LEFT COLUMN */}
+          {loading && <ProgressBar progress={progress} />}
 
-        <div className="space-y-6">
+          {/* DEMO RESULT */}
 
-          <ImagePreview src={preview} />
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-10 mt-12">
+
+            {/* IMAGE PREVIEW */}
+
+            <div className="space-y-6">
+
+              <ImagePreview src={preview} />
+
+            </div>
+
+            {/* SEO RESULT */}
+
+            <div className="space-y-6">
+
+              {loading && <AIAnalyzing />}
+
+              {loading && <SkeletonResult />}
+
+              {!loading && result && (
+                <SeoResult data={result} />
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+      {/* PIPELINE */}
+
+      <FlowDiagram />
 
 
-        </div>
+      {/* RESULTS SHOWCASE */}
+      <ResultsShowcase />
 
-        {/* RIGHT COLUMN */}
+      {/* FEATURES */}
 
-        <div className="space-y-6">
+      <Features />
 
-          {loading && <AIAnalyzing />}
+      {/* FOOTER */}
 
-          {loading && <SkeletonResult />}
+      <Footer />
 
-          {!loading && result && (
-            <SeoResult data={result} />
-          )}
-
-        </div>
-
-      </div>
-
-
-    </main>
+    </>
 
   )
 }

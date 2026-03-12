@@ -46,7 +46,7 @@ export default function ImageComparison({ original, optimized }: Readonly<Props>
         onMouseMove={handleMouseMove}
         onTouchMove={handleTouchMove}
         role="slider"
-        aria-label="Image comparison slider"
+        aria-label="Comparador de imagenes"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(position)}

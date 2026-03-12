@@ -31,7 +31,7 @@ export default function SeoResult({ data }: Readonly<Props>) {
             <div className="mb-4">
 
                 <label htmlFor="title" className="text-sm font-medium">
-                    Title
+                    Titulo
                 </label>
 
                 <div className="flex gap-2">
@@ -59,7 +59,7 @@ export default function SeoResult({ data }: Readonly<Props>) {
             <div className="mb-4">
 
                 <label htmlFor="description" className="text-sm font-medium">
-                    Description
+                    Descripcion
                 </label>
 
                 <div className="flex gap-2">
@@ -88,7 +88,7 @@ export default function SeoResult({ data }: Readonly<Props>) {
             <div className="mb-4">
 
                 <label htmlFor="altText" className="text-sm font-medium">
-                    ALT Text
+                    Texto ALT
                 </label>
 
                 <div className="flex gap-2">
@@ -145,7 +145,7 @@ export default function SeoResult({ data }: Readonly<Props>) {
 
                     <Download size={16} />
 
-                    Download optimized image
+                    Descargar imagen optimizada
 
                 </a>
             </div>
