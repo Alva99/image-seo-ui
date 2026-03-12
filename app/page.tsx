@@ -4,7 +4,6 @@ import { useState } from "react"
 import Image from "next/image"
 
 import { SeoData } from "@/types/seo"
-import { HistoryItem } from "@/types/history"
 
 import { uploadImage } from "./services/api"
 
@@ -14,8 +13,6 @@ import ImagePreview from "./components/ImagePreview"
 import SeoResult from "./components/SeoResult"
 import SkeletonResult from "./components/SkeletonResult"
 import AIAnalyzing from "./components/AIAnalyzing"
-import ImageComparison from "./components/ImageComparison"
-import History from "./components/History"
 
 export default function Page() {
 
@@ -23,9 +20,6 @@ export default function Page() {
   const [result, setResult] = useState<SeoData | null>(null)
   const [progress, setProgress] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [optimizedUrl, setOptimizedUrl] = useState<string | null>(null)
-
-  const [history, setHistory] = useState<HistoryItem[]>([])
 
   const handleFile = async (file: File) => {
 
@@ -52,13 +46,6 @@ export default function Page() {
       )
 
       setResult(data)
-      setOptimizedUrl(data.url)
-
-      // guardar en historial
-      setHistory(prev => [
-        { preview: localPreview, optimized: data.url },
-        ...prev
-      ].slice(0, 12))
 
     } catch (error) {
 
@@ -114,10 +101,6 @@ export default function Page() {
 
           <ImagePreview src={preview} />
 
-          <ImageComparison
-            original={preview}
-            optimized={optimizedUrl}
-          />
 
         </div>
 
@@ -137,13 +120,6 @@ export default function Page() {
 
       </div>
 
-      {/* HISTORY */}
-
-      <div className="mt-16">
-
-        <History items={history} />
-
-      </div>
 
     </main>
 
