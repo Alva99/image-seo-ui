@@ -28,6 +28,7 @@ export default function Page() {
   const [result, setResult] = useState<SeoData | null>(null)
   const [progress, setProgress] = useState(0)
   const [loading, setLoading] = useState(false)
+  const [uploadError, setUploadError] = useState<string | null>(null)
 
   const handleSubmit = async (file: File, describe?: string) => {
 
@@ -37,6 +38,7 @@ export default function Page() {
     setResult(null)
     setLoading(true)
     setProgress(0)
+    setUploadError(null)
 
     try {
 
@@ -60,8 +62,13 @@ export default function Page() {
 
       setResult(data)
 
-    } catch (error) {
+    } catch (error: unknown) {
 
+      const message = error instanceof Error
+        ? error.message
+        : "No fue posible subir la imagen. Intenta nuevamente."
+
+      setUploadError(message)
       console.error("Upload error:", error)
 
     }
@@ -106,6 +113,12 @@ export default function Page() {
           <div id="upload">
             <UploadBox onSubmit={handleSubmit} loading={loading} />
           </div>
+
+          {uploadError && (
+            <p className="mt-4 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2">
+              {uploadError}
+            </p>
+          )}
 
           {loading && <ProgressBar progress={progress} />}
 

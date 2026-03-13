@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useDropzone } from "react-dropzone"
+import { useDropzone, FileRejection } from "react-dropzone"
 import { UploadCloud, ImageIcon, Send } from "lucide-react"
 
 interface Props {
@@ -12,16 +12,33 @@ interface Props {
 export default function UploadBox({ onSubmit, loading = false }: Readonly<Props>) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [describe, setDescribe] = useState("")
+  const [fileError, setFileError] = useState<string | null>(null)
 
   const onDrop = (acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setSelectedFile(acceptedFiles[0])
+      setFileError(null)
     }
+  }
+
+  const onDropRejected = (rejections: FileRejection[]) => {
+    if (!rejections.length) {
+      return
+    }
+
+    setSelectedFile(null)
+    setFileError("Formato no soportado. Usa JPG, JPEG, PNG o WEBP.")
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { "image/*": [] }
+    onDropRejected,
+    multiple: false,
+    accept: {
+      "image/jpeg": [".jpg", ".jpeg"],
+      "image/png": [".png"],
+      "image/webp": [".webp"]
+    }
   })
 
   const handleSubmit = () => {
@@ -55,6 +72,12 @@ export default function UploadBox({ onSubmit, loading = false }: Readonly<Props>
         <p className="text-gray-500 text-sm mt-1">
           Arrastra y suelta o haz clic para elegir
         </p>
+
+        {fileError && (
+          <p className="text-xs text-red-600 mt-2">
+            {fileError}
+          </p>
+        )}
 
         {selectedFile && (
           <p className="text-xs text-indigo-700 mt-2">
