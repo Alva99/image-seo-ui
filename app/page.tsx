@@ -29,11 +29,12 @@ export default function Page() {
   const [progress, setProgress] = useState(0)
   const [loading, setLoading] = useState(false)
 
-  const handleFile = async (file: File) => {
+  const handleSubmit = async (file: File, describe?: string) => {
 
     const localPreview = URL.createObjectURL(file)
 
     setPreview(localPreview)
+    setResult(null)
     setLoading(true)
     setProgress(0)
 
@@ -41,7 +42,11 @@ export default function Page() {
 
       const data = await uploadImage(
         file,
+        describe,
         (progressEvent) => {
+          if (!progressEvent.total) {
+            return
+          }
 
           const percent = Math.round(
             (progressEvent.loaded * 100) /
@@ -99,7 +104,7 @@ export default function Page() {
           {/* Upload tool */}
 
           <div id="upload">
-            <UploadBox onFile={handleFile} />
+            <UploadBox onSubmit={handleSubmit} loading={loading} />
           </div>
 
           {loading && <ProgressBar progress={progress} />}

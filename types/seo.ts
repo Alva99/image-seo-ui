@@ -26,4 +26,8 @@ export interface SeoData {
       percent: number
     }
   }
+  copy_improvement?: {
+    input: string
+    improved: string
+  } | null
 }

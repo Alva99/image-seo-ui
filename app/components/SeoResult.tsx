@@ -12,7 +12,7 @@ export default function SeoResult({ data }: Readonly<Props>) {
 
     if (!data) return null
 
-    const { seo, optimization } = data
+    const { seo, optimization, copy_improvement } = data
 
     const copy = (text: string) => {
         navigator.clipboard.writeText(text)
@@ -149,6 +149,53 @@ export default function SeoResult({ data }: Readonly<Props>) {
 
                 </a>
             </div>
+
+            {copy_improvement?.input && copy_improvement?.improved && (
+                <div className="border-t pt-4 mt-4 space-y-3">
+
+                    <h3 className="text-sm font-semibold">
+                        Mejora de redaccion
+                    </h3>
+
+                    <div>
+                        <label htmlFor="copyInput" className="text-sm font-medium">
+                            Texto original
+                        </label>
+
+                        <textarea
+                            id="copyInput"
+                            value={copy_improvement.input}
+                            readOnly
+                            rows={2}
+                            className="w-full border rounded p-2 text-sm"
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="copyImproved" className="text-sm font-medium">
+                            Texto mejorado
+                        </label>
+
+                        <div className="flex gap-2">
+                            <textarea
+                                id="copyImproved"
+                                value={copy_improvement.improved}
+                                readOnly
+                                rows={3}
+                                className="w-full border rounded p-2 text-sm"
+                            />
+
+                            <button
+                                onClick={() => copy(copy_improvement.improved)}
+                                className="bg-gray-100 px-3 rounded hover:bg-gray-200"
+                            >
+                                <Copy size={16} />
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            )}
 
 
         </div>
