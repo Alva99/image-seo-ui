@@ -39,7 +39,7 @@ export const uploadImage = async (
   }
 
   const response = await axios.post<SeoData>(
-    "https://n61sm9kwu9.execute-api.us-east-1.amazonaws.com/dev/optimize",
+    "https://9wbnkznpd1.execute-api.us-east-1.amazonaws.com/dev/optimize",
     formData,
     {
       headers: {
